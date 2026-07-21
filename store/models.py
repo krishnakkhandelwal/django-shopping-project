@@ -4,7 +4,7 @@ from django.db import models
 #id is created automatically is primary too
 
 class Collection(models.Model):
-    number_of_products = models.IntegerField()
+    number_of_products = models.IntegerField(default=0, null=False)
     title = models.CharField(max_length=255)
     #circular dependency
     featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL, null =True,related_name='+') 
@@ -44,11 +44,11 @@ class Customer(models.Model):
     
     membership =models.CharField(max_length=1,choices=Membership_choice,default=mem_bronze)
 
-    class Meta:
-        db_table = 'store_customers'
-        indexes =[
-            models.Index(fields=['last_name','first_name'])
-        ]
+    # class Meta:
+    #     db_table = 'store_customers'
+    #     indexes =[
+    #         models.Index(fields=['last_name','first_name'])
+    #     ]
 
 
 
